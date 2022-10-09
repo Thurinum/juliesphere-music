@@ -22,6 +22,7 @@ import { ArtistDetailsComponent } from './components/artist-details/artist-detai
 import { ArtistAlbumsComponent } from './components/artist-details/artist-albums/artist-albums.component';
 import { ArtistAlbumTracksComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-tracks.component';
 import { ArtistConcertsComponent } from './components/artist-details/artist-concerts/artist-concerts.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
 	declarations: [
@@ -32,6 +33,7 @@ import { ArtistConcertsComponent } from './components/artist-details/artist-conc
 		ArtistAlbumsComponent,
 		ArtistAlbumTracksComponent,
 		ArtistConcertsComponent,
+		PageNotFoundComponent,
 	],
 	imports: [
 		BrowserModule,
