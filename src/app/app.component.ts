@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { HelperService } from './services/helper.service';
 
 @Component({
 	selector: 'app-root',
@@ -7,9 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-	title = 'angular-tp2';
-
 	constructor(
-		public snackBar: MatSnackBar
+		public Helper: HelperService
 	) { }
 }
