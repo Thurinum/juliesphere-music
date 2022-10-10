@@ -24,7 +24,7 @@
 		</datalist>
 	</mat-form-field>
 	&nbsp;&nbsp;
-	<button (click)="list.addArtist(query.value)" mat-raised-button color="primary">+ Add</button>
+	<button (click)="list.addArtist(query.value);query.value = ''" mat-raised-button color="primary">+ Add</button>
 </fieldset>
 
 <br />

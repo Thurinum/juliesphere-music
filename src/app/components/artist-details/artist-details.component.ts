@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/models/artist.model';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-artist-details',
@@ -9,6 +11,10 @@ import { Artist } from 'src/app/models/artist.model';
 export class ArtistDetailsComponent implements OnInit {
 	artist?: Artist;
 
-	constructor() { }
-	ngOnInit(): void { }
+	constructor(
+		private router: Router
+	) { }
+	ngOnInit(): void {
+		this.router.events.subscribe((() => this.artist = history.state));
+	}
 }
