@@ -21,5 +21,8 @@ export class QueryService implements IQueryService {
 
 	constructor(
 		private spotify: SpotifyService
-	) { }
+	) { 
+		if (!spotify.authorized)
+			spotify.authorize();
+	}
 }

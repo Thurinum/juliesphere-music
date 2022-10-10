@@ -18,7 +18,10 @@
 <fieldset>
 	<legend>Add an artist</legend>
 	<mat-form-field>
-		<input #query matInput type="text" placeholder="Search for artist..." />
+		<input #query matInput type="text" placeholder="Search for artist..." list="queryAutocomplete" autocomplete="true" />
+		<datalist id="queryAutocomplete">
+			<option *ngFor="let option of list.datalist" [value]="option"></option>			
+		</datalist>
 	</mat-form-field>
 	&nbsp;&nbsp;
 	<button (click)="list.addArtist(query.value)" mat-raised-button color="primary">+ Add</button>
