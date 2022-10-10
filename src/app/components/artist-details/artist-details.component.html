@@ -1,11 +1,13 @@
 <h2>Selected artist</h2>
 
-<div class="layout" mat-tab-nav-bar>
-	<a mat-tab-link routerLink="/artist/0/albums">Albums</a>
-	<a mat-tab-link routerLink="/artist/0/concerts">Concerts</a>
+<div *ngIf="artist; else noArtistMsg">
+	<div class="layout" mat-tab-nav-bar>
+		<a mat-tab-link routerLink="/artist/0/albums">Albums</a>
+		<a mat-tab-link routerLink="/artist/0/concerts">Concerts</a>
+	</div>
+	
+	<router-outlet></router-outlet>
 </div>
-
-<router-outlet *ngIf="artist; else noArtistMsg"></router-outlet>
 
 <ng-template #noArtistMsg>
 	<p>There is no artist selected. Select an artist to see its stats.</p>
