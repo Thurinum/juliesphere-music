@@ -18,15 +18,15 @@
 <fieldset>
 	<legend>Add an artist</legend>
 	<mat-form-field>
-		<input matInput type="text" placeholder="Search for artist..." />
+		<input #query matInput type="text" placeholder="Search for artist..." />
 	</mat-form-field>
 	&nbsp;&nbsp;
-	<button (click)="Helper.popup('This is a test', 'fuck you')" mat-raised-button color="primary">Add</button>
+	<button (click)="list.addArtist(query.value)" mat-raised-button color="primary">+ Add</button>
 </fieldset>
 
 <br />
 
-<app-artist-list></app-artist-list>
+<app-artist-list #list></app-artist-list>
 
 <router-outlet></router-outlet>
 

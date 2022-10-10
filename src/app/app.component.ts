@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HelperService } from './services/helper.service';
+import { QueryService } from './services/query.service';
 
 @Component({
 	selector: 'app-root',
@@ -8,6 +9,7 @@ import { HelperService } from './services/helper.service';
 })
 export class AppComponent {
 	constructor(
-		public Helper: HelperService
+		public query: QueryService,
+		public helper: HelperService
 	) { }
 }
