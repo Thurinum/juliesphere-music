@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRippleModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 
 import { AppComponent } from './app.component';
@@ -51,7 +52,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 		MatIconModule,
 		MatDividerModule,
 		MatRippleModule,
-		MatListModule
+		MatListModule,
+		MatSelectModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

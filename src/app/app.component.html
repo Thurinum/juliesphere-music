@@ -1,6 +1,16 @@
 <header>
 	<h1>JulieSphere&trade; Essentials Art Analytics 2022</h1>
-	<p>&copy;2022 JuliePro. All rights reserved.</p>
+	<div class="language-selector">
+		<mat-icon>language</mat-icon>
+		<mat-form-field>
+			<mat-label>Language</mat-label>
+			<mat-select>
+				<mat-option>English</mat-option>
+				<mat-option>French</mat-option>
+				<mat-option>Fuwwy</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
 </header>
 
 <br />
@@ -11,7 +21,7 @@
 		<input matInput type="text" placeholder="Search for artist..." />
 	</mat-form-field>
 	&nbsp;&nbsp;
-	<button mat-raised-button color="primary">Add</button>
+	<button (click)="snackBar.open('This is a test', 'fuck you')" mat-raised-button color="primary">Add</button>
 </fieldset>
 
 <br />
@@ -19,3 +29,8 @@
 <app-artist-list></app-artist-list>
 
 <router-outlet></router-outlet>
+
+<br />
+<mat-divider></mat-divider>
+
+<p class="legal"><small>&copy;2022 JuliePro. All rights reserved.</small></p>
