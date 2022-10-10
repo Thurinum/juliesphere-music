@@ -12,12 +12,9 @@ const routes: Routes = [
 	{
 		path: 'artist/:id', component: ArtistDetailsComponent,
 		children: [
-			{
-				path: 'albums', component: ArtistAlbumsComponent,
-				children: [
-					{ path: ":id", component: ArtistAlbumTracksComponent }
-				]
-			},
+			{ path: 'albums', component: ArtistAlbumsComponent },
+			{ path: "albums/:id", component: ArtistAlbumTracksComponent },
+			{ path: "albums/:id/tracks", component: ArtistAlbumTracksComponent },
 			{ path: "concerts", component: ArtistConcertsComponent },
 		]
 	},

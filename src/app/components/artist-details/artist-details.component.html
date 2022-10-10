@@ -5,4 +5,8 @@
 	<a mat-tab-link routerLink="/artist/0/concerts">Concerts</a>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="artist; else noArtistMsg"></router-outlet>
+
+<ng-template #noArtistMsg>
+	<p>There is no artist selected. Select an artist to see its stats.</p>
+</ng-template>

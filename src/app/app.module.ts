@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRippleModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
 
 
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 		MatSnackBarModule,
 		MatIconModule,
 		MatDividerModule,
-		MatRippleModule
+		MatRippleModule,
+		MatListModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

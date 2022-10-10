@@ -1,7 +1,9 @@
 <h2>Added artists</h2>
 
-<section class="card-layout">
-	<app-card [canRemove]="true"></app-card>
-	<app-card [canRemove]="true"></app-card>
-	<app-card [canRemove]="true"></app-card>
+<section *ngIf="artists.length > 0; else emptyList" class="card-layout">
+	<app-card *ngFor="let artist of artists" [model]="artist" [canRemove]="true"></app-card>
 </section>
+
+<ng-template #emptyList>
+	<p>There are no artists added. Add artists to see them here.</p>
+</ng-template>
