@@ -12,7 +12,7 @@ interface IQueryService {
 @Injectable({ providedIn: 'root' })
 export class QueryService implements IQueryService {
 	async getArtist(name: string): Promise<Observable<any> | undefined> {
-		return this.spotify.request(`https://api.spotify.com/v1/search?type=artist&offset=0&limit=5&q=${name}`);
+		return this.spotify.request(`https://api.spotify.com/v1/search?type=artist&offset=0&limit=25&q=${name}`);
 	}
 
 	async getArtistAlbums(artistid: string): Promise<Observable<any> | undefined> {
