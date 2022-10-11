@@ -14,6 +14,9 @@ export class ArtistDetailsComponent implements OnInit {
 		private router: Router
 	) { }
 	ngOnInit(): void {
-		this.router.events.subscribe((() => this.artist = history.state));
+		this.router.events.subscribe((() => {
+			if (history.state.name)
+				this.artist = history.state;
+		}));
 	}
 }

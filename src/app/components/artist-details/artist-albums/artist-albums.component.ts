@@ -54,7 +54,6 @@ export class ArtistAlbumsComponent implements OnInit {
 
 	ngOnInit(): void {		
 		this.subscription = this.route.parent?.params.subscribe(params => {
-			console.log(params["id"]);
 			this.getAlbums(params["id"]);
 		});
 	}
