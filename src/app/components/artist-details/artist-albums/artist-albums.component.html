@@ -1,10 +1,6 @@
 <section *ngIf="albums.length > 0; else noAlbums" class="card-layout">
-	<app-card *ngFor="let album of albums" [model]="album" routerLink="0/tracks/"></app-card>
+	<app-card *ngFor="let album of albums" [model]="album" [routerLink]="[album.id, 'tracks']"></app-card>
 </section>
-
-<!-- <section #albumTracks *ngIf="album">
-	<h3>Selected album: </h3>
-</section> -->
 
 <ng-template #noAlbums>
 	<p>There are no albums for this artist.</p>
