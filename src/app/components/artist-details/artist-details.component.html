@@ -2,8 +2,8 @@
 
 <div *ngIf="artist; else noArtistMsg">
 	<div class="layout" mat-tab-nav-bar>
-		<a mat-tab-link [routerLink]="['/artist/:id/albums', artist.id]" [state]="artist">Albums</a>
-		<a mat-tab-link [routerLink]="['/artist/:id/concerts', artist.name]" [state]="artist">Concerts</a>
+		<a mat-tab-link [routerLink]="['/artist', artist.id, 'albums']" [state]="artist">Albums</a>
+		<a mat-tab-link [routerLink]="['/artist', artist.name, 'concerts']">Concerts</a>
 	</div>
 	
 	<router-outlet></router-outlet>

@@ -22,7 +22,7 @@ export class ArtistListComponent implements OnInit {
 		this.query.getArtist(name).then(
 			request => {
 				if (!request) {
-					this.helper.popup("Unable to connect to Spotify's API.", "Damn it");
+					this.helper.popup("An error occured while fetching artists from the Spotify API.", "DAMN IT");
 					return;
 				}
 
@@ -46,13 +46,11 @@ export class ArtistListComponent implements OnInit {
 							return;
 						}
 
-						this.artists.push(
-							new Artist(
-								artistObj.id,
-								artistObj.name,
-								artistObj.images[0].url
-							)
-						);
+						this.artists.push(new Artist(
+							artistObj.id,
+							artistObj.name,
+							artistObj.images[0].url
+						));
 
 						this.localStorage.setItem("artists", JSON.stringify(this.artists));
 					}
@@ -60,7 +58,7 @@ export class ArtistListComponent implements OnInit {
 			}
 		)
 	}
-	
+
 	removeArtist(id: string): void {
 		this.artists = this.artists.filter(artist => artist.id !== id);
 		this.localStorage.setItem("artists", JSON.stringify(this.artists));
@@ -80,7 +78,7 @@ export class ArtistListComponent implements OnInit {
 	constructor(
 		private query: QueryService,
 		private helper: HelperService
-	) { 
+	) {
 		this.artists = JSON.parse(this.localStorage.getItem("artists") || "[]");
 	}
 	ngOnInit(): void { }

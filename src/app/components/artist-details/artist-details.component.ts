@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/models/artist.model';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-artist-details',
