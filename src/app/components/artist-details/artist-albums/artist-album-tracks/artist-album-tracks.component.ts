@@ -10,6 +10,7 @@ import { QueryService } from 'src/app/services/query.service';
 	styleUrls: ['./artist-album-tracks.component.sass']
 })
 export class ArtistAlbumTracksComponent implements OnInit {
+	albumName: string = "";
 	tracks: string[] = [];
 	subscription?: Subscription
 
@@ -49,6 +50,7 @@ export class ArtistAlbumTracksComponent implements OnInit {
 	ngOnInit(): void {		
 		this.subscription = this.route.params.subscribe(params => {
 			this.getTracks(params["id"]);
+			console.log(history.state)
 		});
 	}
 	ngOnDestroy(): void {

@@ -16,7 +16,7 @@ export class QueryService implements IQueryService {
 	}
 
 	async getArtistAlbums(artistid: string): Promise<Observable<any> | undefined> {
-		return this.spotify.request(`https://api.spotify.com/v1/artists/${artistid}/albums?market=US&limit=10&offset=0`);
+		return this.spotify.request(`https://api.spotify.com/v1/artists/${artistid}/albums?market=US&limit=50&offset=0`);
 	}
 
 	async getAlbumTracks(albumid: string): Promise<Observable<any> | undefined> {
