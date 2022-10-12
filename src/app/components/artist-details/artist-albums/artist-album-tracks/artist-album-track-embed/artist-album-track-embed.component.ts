@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-artist-album-track-embed',
@@ -6,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./artist-album-track-embed.component.sass']
 })
 export class ArtistAlbumTrackEmbedComponent implements OnInit {
+	trackid: string = "";
 
-	constructor() { }
-	ngOnInit(): void { }
+	constructor(
+		private route: ActivatedRoute
+	) { }
+	ngOnInit(): void {
+		this.route.params.subscribe(params => {
+			this.trackid = params["id"];
+		});
+	}
 }
