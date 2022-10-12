@@ -9,9 +9,9 @@ import { ArtistDetailsComponent } from './components/artist-details/artist-detai
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-	{ path: "", component: ArtistDetailsComponent, pathMatch: "full" },
-	{ path: "artist", component: ArtistDetailsComponent },
-	{ path: "artist/:artistId", component: ArtistDetailsComponent, },
+	{ path: "", component: ArtistAlbumsComponent, pathMatch: "full" },
+	{ path: "artist", component: ArtistAlbumsComponent },
+	{ path: "artist/:artistId", component: ArtistAlbumsComponent, },
 	{ path: "artist/:artistId/albums", component: ArtistAlbumsComponent },
 	{ path: "artist/:artistId/albums/:albumId", component: ArtistAlbumTracksComponent },
 	{
@@ -22,7 +22,7 @@ const routes: Routes = [
 		]
 	},
 	{ path: "artist/:artistId/concerts", component: ArtistConcertsComponent },
-	// { path: "**", component: PageNotFoundComponent },
+	{ path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({
