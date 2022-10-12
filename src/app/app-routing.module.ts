@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { ArtistAlbumTrackEmbedComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-track-embed/artist-album-track-embed.component';
 import { ArtistAlbumTracksComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-tracks.component';
 import { ArtistAlbumsComponent } from './components/artist-details/artist-albums/artist-albums.component';
@@ -8,24 +9,20 @@ import { ArtistDetailsComponent } from './components/artist-details/artist-detai
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/artist/null', pathMatch: 'full' },
-	{ path: 'artist', redirectTo: '/artist/null', pathMatch: 'full' },
+	{ path: "", component: ArtistDetailsComponent, pathMatch: "full" },
+	{ path: "artist", component: ArtistDetailsComponent },
+	{ path: "artist/:artistId", component: ArtistDetailsComponent, },
+	{ path: "artist/:artistId/albums", component: ArtistAlbumsComponent },
+	{ path: "artist/:artistId/albums/:albumId", component: ArtistAlbumTracksComponent },
 	{
-		path: 'artist/:id', component: ArtistDetailsComponent,
+		path: "artist/:artistId/albums/:albumId/tracks", component: ArtistAlbumTracksComponent,
 		children: [
-			{ path: 'albums', component: ArtistAlbumsComponent },
-			{ path: "albums/:id", component: ArtistAlbumTracksComponent },
-			{
-				path: "albums/:id/tracks", component: ArtistAlbumTracksComponent,
-				children: [
-					{ path: ":id", component: ArtistAlbumTrackEmbedComponent },
-					{ path: ":id/play", component: ArtistAlbumTrackEmbedComponent }
-				]
-			},
-			{ path: "concerts", component: ArtistConcertsComponent },
+			{ path: ":trackId", component: ArtistAlbumTrackEmbedComponent },
+			{ path: ":trackId/play", component: ArtistAlbumTrackEmbedComponent },
 		]
 	},
-	{ path: "**", component: PageNotFoundComponent },
+	{ path: "artist/:artistId/concerts", component: ArtistConcertsComponent },
+	// { path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({

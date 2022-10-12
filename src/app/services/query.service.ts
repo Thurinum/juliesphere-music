@@ -32,8 +32,7 @@ export class QueryService implements IQueryService {
 
 	constructor(
 		private spotify: SpotifyService,
-		private google: GoogleService,
-		private helper: HelperService
+		private google: GoogleService
 	) { 
 		if (!spotify.authorized)
 			spotify.authorize();

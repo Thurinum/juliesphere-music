@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/models/artist.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Route } from '@angular/router';
 
 @Component({
 	selector: 'app-artist-details',
@@ -11,6 +11,7 @@ export class ArtistDetailsComponent implements OnInit {
 	artist?: Artist;
 
 	constructor(
+		private route: ActivatedRoute,
 		private router: Router
 	) { }
 	ngOnInit(): void {

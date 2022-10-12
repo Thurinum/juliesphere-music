@@ -13,8 +13,7 @@ export class ArtistAlbumTracksComponent implements OnInit {
 	artist: string = "";
 	tracks: string[] = [];
 	trackid: string = "";
-	subscription?: Subscription
-
+	
 	getYoutubeUrl(track: string): void {
 		this.query.getTrackYoutubeId(`${this.artist} ${track}`).then(
 			request => {
@@ -30,7 +29,7 @@ export class ArtistAlbumTracksComponent implements OnInit {
 							return;
 						}
 
-						this.trackid = response.items[0].id.videoId;						;
+						this.trackid = response.items[0].id.videoId;
 						this.showTrackPlayer();
 					}
 				);
@@ -45,7 +44,7 @@ export class ArtistAlbumTracksComponent implements OnInit {
 		this.router.navigate([this.trackid, 'play'], { relativeTo: this.route });
 	}
 
-	getTracks(albumid: string): void {
+	getTracks(albumid: string | null): void {
 		if (!albumid) {
 			this.helper.popup("No album id provided.");
 			return;
@@ -65,7 +64,6 @@ export class ArtistAlbumTracksComponent implements OnInit {
 							return;
 						}
 						
-						console.log(this.artist)
 						this.artist = response.items[0].artists[0].name;
 						this.tracks = response.items.map((track: any) => track.name);
 					}
@@ -81,12 +79,10 @@ export class ArtistAlbumTracksComponent implements OnInit {
 		private router: Router
 	) { }
 
-	ngOnInit(): void {		
-		this.subscription = this.route.params.subscribe(params => {
-			this.getTracks(params["id"]);
+	ngOnInit(): void {
+		this.getTracks(this.route.snapshot.paramMap.get("albumId"));						
+		this.route.params.subscribe(params => {
+			this.getTracks(params["albumId"]);
 		});
-	}
-	ngOnDestroy(): void {
-		this.subscription?.unsubscribe();
 	}
 }

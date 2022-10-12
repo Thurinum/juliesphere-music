@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { HelperService } from "./helper.service";
 
 
 @Injectable({ providedIn: "root" })
@@ -16,12 +17,13 @@ export class SpotifyService {
 			})
 		};
 
-		try {
-			this.http.post<any>("https://accounts.spotify.com/api/token", body.toString(), httpOptions)
-				.subscribe(response => this.token = response.access_token);
-		} catch (e) {
-			console.error(`Could not authorize ${this.CLIENT_ID} at Spotify.`)
-		}
+		this.http.post<any>("https://accounts.spotify.com/api/token", body.toString(), httpOptions)
+			.subscribe(response => {
+				if (!response.access_token)
+					this.helper.popup("Could not authenticate to Spotify. Are credentials correct?");
+
+				this.token = response.access_token;
+			});
 
 		this.authorized = true;
 		console.info(`Authorized ${this.CLIENT_ID} at Spotify.`);
@@ -29,8 +31,7 @@ export class SpotifyService {
 
 	async request(url: string): Promise<Observable<any> | undefined> {
 		if (!this.token) {
-			console.error("Client has not been authorized to Spotify!");
-			return undefined;
+			this.authorize();
 		}
 
 		const httpOptions = {
@@ -47,5 +48,8 @@ export class SpotifyService {
 	private CLIENT_SECRET = "9a6f963840b44c638eeb7d667afa64e2";
 	private token?: string
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient,
+		private helper: HelperService
+	) { }
 }

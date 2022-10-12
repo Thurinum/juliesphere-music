@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Album } from 'src/app/models/album.model';
 import { HelperService } from 'src/app/services/helper.service';
 import { QueryService } from 'src/app/services/query.service';
@@ -13,9 +13,9 @@ import { Subscription } from 'rxjs';
 export class ArtistAlbumsComponent implements OnInit {
 	albums: Album[] = [];
 
-	getAlbums(artistid: string): void {
+	getAlbums(artistid?: string | null): void {
 		if (!artistid) {
-			this.helper.popup("No artist ID was provided.");
+			this.helper.popup("No album artist ID was provided.");
 			return;
 		}
 
@@ -44,20 +44,18 @@ export class ArtistAlbumsComponent implements OnInit {
 		)
 	}
 
-	private subscription?: Subscription
-
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		private query: QueryService,
 		private helper: HelperService
 	) { }
 
-	ngOnInit(): void {		
-		this.subscription = this.route.parent?.params.subscribe(params => {
-			this.getAlbums(params["id"]);
-		});
-	}
-	ngOnDestroy(): void {
-		this.subscription?.unsubscribe();
+	ngOnInit(): void {
+		this.getAlbums(this.route.snapshot.paramMap.get("artistId"));				
+		this.router.events.subscribe((e => {
+			if (e instanceof NavigationEnd)
+				this.getAlbums(this.route.snapshot.paramMap.get("artistId"));				
+		}));
 	}
 }

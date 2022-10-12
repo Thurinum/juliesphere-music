@@ -16,8 +16,7 @@ export class ArtistAlbumTrackEmbedComponent implements OnInit {
 	) { }
 	ngOnInit(): void {
 		this.route.params.subscribe(params => {
-			console.log(params["id"])
-			this.youtubeUrl = `https://www.youtube.com/embed/${params["id"]}`;
+			this.youtubeUrl = `https://www.youtube.com/embed/${params["trackId"]}`;
 		});
 	}
 }
