@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GoogleService } from './google.service';
+import { HelperService } from './helper.service';
 import { SpotifyService } from './spotify.service';
 
 interface IQueryService {
@@ -7,6 +9,7 @@ interface IQueryService {
 	//getArtistConcerts(name: string): Promise<Observable<any> | undefined>
 	getArtistAlbums(artistid: string): Promise<Observable<any> | undefined>
 	getAlbumTracks(albumid: string): Promise<Observable<any> | undefined>
+	getTrackYoutubeId(query: string): Promise<Observable<any> | undefined>
 }
 
 @Injectable({ providedIn: 'root' })
@@ -23,8 +26,14 @@ export class QueryService implements IQueryService {
 		return this.spotify.request(`https://api.spotify.com/v1/albums/${albumid}/tracks?market=US&limit=50&offset=0`);
 	}
 
+	async getTrackYoutubeId(query: string): Promise<Observable<any> | undefined> {
+		return this.google.searchYoutube(query);
+	}
+
 	constructor(
-		private spotify: SpotifyService
+		private spotify: SpotifyService,
+		private google: GoogleService,
+		private helper: HelperService
 	) { 
 		if (!spotify.authorized)
 			spotify.authorize();

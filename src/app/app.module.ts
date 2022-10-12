@@ -25,6 +25,8 @@ import { ArtistAlbumsComponent } from './components/artist-details/artist-albums
 import { ArtistAlbumTracksComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-tracks.component';
 import { ArtistConcertsComponent } from './components/artist-details/artist-concerts/artist-concerts.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ArtistAlbumTrackEmbedComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-track-embed/artist-album-track-embed.component';
+import { UrlSanitizerPipe } from './url-sanitizer.pipe';
 
 @NgModule({
 	declarations: [
@@ -36,6 +38,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 		ArtistAlbumTracksComponent,
 		ArtistConcertsComponent,
 		PageNotFoundComponent,
+		ArtistAlbumTrackEmbedComponent,
+  UrlSanitizerPipe,
 	],
 	imports: [
 		BrowserModule,

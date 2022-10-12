@@ -10,7 +10,7 @@ import { CardComponent } from '../card/card.component';
 	styleUrls: ['./artist-list.component.sass']
 })
 export class ArtistListComponent implements OnInit {
-	@Input() artists: Artist[] = [];
+	artists: Artist[] = [];
 	datalist: string[] = [];
 
 	addArtist(name: string): void {

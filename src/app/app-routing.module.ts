@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ArtistAlbumTrackEmbedComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-track-embed/artist-album-track-embed.component';
 import { ArtistAlbumTracksComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-tracks.component';
 import { ArtistAlbumsComponent } from './components/artist-details/artist-albums/artist-albums.component';
 import { ArtistConcertsComponent } from './components/artist-details/artist-concerts/artist-concerts.component';
@@ -14,7 +15,13 @@ const routes: Routes = [
 		children: [
 			{ path: 'albums', component: ArtistAlbumsComponent },
 			{ path: "albums/:id", component: ArtistAlbumTracksComponent },
-			{ path: "albums/:id/tracks", component: ArtistAlbumTracksComponent },
+			{
+				path: "albums/:id/tracks", component: ArtistAlbumTracksComponent,
+				children: [
+					{ path: ":id", component: ArtistAlbumTrackEmbedComponent },
+					{ path: ":id/play", component: ArtistAlbumTrackEmbedComponent }
+				]
+			},
 			{ path: "concerts", component: ArtistConcertsComponent },
 		]
 	},

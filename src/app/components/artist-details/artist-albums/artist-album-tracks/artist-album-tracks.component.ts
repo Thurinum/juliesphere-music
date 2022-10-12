@@ -10,9 +10,32 @@ import { QueryService } from 'src/app/services/query.service';
 	styleUrls: ['./artist-album-tracks.component.sass']
 })
 export class ArtistAlbumTracksComponent implements OnInit {
-	albumName: string = "";
+	artist: string = "";
 	tracks: string[] = [];
+	trackid: string = "";
 	subscription?: Subscription
+
+	getYoutubeUrl(track: string): void {
+		this.query.getTrackYoutubeId(`${this.artist} ${track}`).then(
+			request => {
+				if (!request) {
+					this.helper.popup("Could not fetch track's youtube id from Spotify.");
+					return;
+				}
+
+				request.subscribe(
+					response => {
+						if (!response || response.items.length === 0) {
+							this.helper.popup(`Track has no youtube ID!`);
+							return;
+						}
+
+						this.trackid = response.items[0].id.videoId;						;
+					}
+				);
+			}
+		);
+	}
 
 	getTracks(albumid: string): void {
 		if (!albumid) {
@@ -33,7 +56,9 @@ export class ArtistAlbumTracksComponent implements OnInit {
 							this.helper.popup(`Album has no tracks.`);
 							return;
 						}
-
+						
+						console.log(this.artist)
+						this.artist = response.items[0].artists[0].name;
 						this.tracks = response.items.map((track: any) => track.name);
 					}
 				);
@@ -50,7 +75,6 @@ export class ArtistAlbumTracksComponent implements OnInit {
 	ngOnInit(): void {		
 		this.subscription = this.route.params.subscribe(params => {
 			this.getTracks(params["id"]);
-			console.log(history.state)
 		});
 	}
 	ngOnDestroy(): void {

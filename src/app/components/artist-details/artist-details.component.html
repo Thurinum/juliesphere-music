@@ -1,4 +1,4 @@
-<h2>Selected artist<span *ngIf="artist">:</span> {{artist?.name}}</h2>
+<h2>Selected artist<span *ngIf="artist">:</span><em> {{artist?.name}}</em></h2>
 
 <div *ngIf="artist; else noArtistMsg">
 	<div class="layout" mat-tab-nav-bar>
