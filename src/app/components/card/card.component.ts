@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 	@Input() canRemove: boolean = false;
+	@Input() selected: boolean = false;
 	@Input() model: any = {}
 	@Output() remove = new EventEmitter<string>();
-	selected: boolean = false;
 
 	constructor() { }
 	ngOnInit(): void { }

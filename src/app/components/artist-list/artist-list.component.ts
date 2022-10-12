@@ -12,6 +12,7 @@ import { CardComponent } from '../card/card.component';
 export class ArtistListComponent implements OnInit {
 	artists: Artist[] = [];
 	datalist: string[] = [];
+	selectedArtistId: string = "";
 
 	addArtist(name: string): void {
 		if (!name) {
@@ -64,15 +65,11 @@ export class ArtistListComponent implements OnInit {
 		this.localStorage.setItem("artists", JSON.stringify(this.artists));
 	}
 
-	selectCard(card: CardComponent): void {
-		if (this.selectedCard)
-			this.selectedCard.selected = false;
-
-		this.selectedCard = card;
-		this.selectedCard.selected = true;
+	selectCard(artistid: string): void {
+		this.selectedArtistId = artistid;
+		this.localStorage.setItem("selectedArtistId", artistid);
 	}
 
-	private selectedCard?: CardComponent;
 	private localStorage: Storage = window.localStorage;
 
 	constructor(
@@ -80,6 +77,7 @@ export class ArtistListComponent implements OnInit {
 		private helper: HelperService
 	) {
 		this.artists = JSON.parse(this.localStorage.getItem("artists") || "[]");
+		this.selectedArtistId = this.localStorage.getItem("selectedArtistId") || "";
 	}
 	ngOnInit(): void { }
 }
