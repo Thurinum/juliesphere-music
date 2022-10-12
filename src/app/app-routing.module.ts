@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { ArtistAlbumTrackEmbedComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-track-embed/artist-album-track-embed.component';
 import { ArtistAlbumTracksComponent } from './components/artist-details/artist-albums/artist-album-tracks/artist-album-tracks.component';
 import { ArtistAlbumsComponent } from './components/artist-details/artist-albums/artist-albums.component';
 import { ArtistConcertsComponent } from './components/artist-details/artist-concerts/artist-concerts.component';
-import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -21,7 +19,7 @@ const routes: Routes = [
 			{ path: ":trackId/play", component: ArtistAlbumTrackEmbedComponent },
 		]
 	},
-	{ path: "artist/:artistId/concerts", component: ArtistConcertsComponent },
+	{ path: "artist/:artistName/concerts", component: ArtistConcertsComponent },
 	{ path: "**", component: PageNotFoundComponent },
 ];
 
