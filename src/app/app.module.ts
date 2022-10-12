@@ -39,7 +39,7 @@ import { UrlSanitizerPipe } from './url-sanitizer.pipe';
 		ArtistConcertsComponent,
 		PageNotFoundComponent,
 		ArtistAlbumTrackEmbedComponent,
-  UrlSanitizerPipe,
+		UrlSanitizerPipe,
 	],
 	imports: [
 		BrowserModule,
@@ -59,7 +59,7 @@ import { UrlSanitizerPipe } from './url-sanitizer.pipe';
 		MatListModule,
 		MatSelectModule
 	],
-	providers: [],
+	providers: [UrlSanitizerPipe],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

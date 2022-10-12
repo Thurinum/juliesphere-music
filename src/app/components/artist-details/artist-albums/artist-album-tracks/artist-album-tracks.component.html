@@ -1,7 +1,7 @@
 <h3>Tracks</h3>
 
 <mat-list *ngIf="tracks.length > 0; else noTracks">
-	<mat-list-item matRipple *ngFor="let track of tracks" (click)="getYoutubeUrl(track)" [routerLink]="['./', trackid, 'play']">
+	<mat-list-item matRipple *ngFor="let track of tracks" (click)="getYoutubeUrl(track)">
 		<mat-icon mat-list-icon>music_note</mat-icon>
 		<h4 mat-line>{{track}}</h4>
 	</mat-list-item>

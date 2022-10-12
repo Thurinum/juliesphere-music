@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HelperService } from 'src/app/services/helper.service';
 import { QueryService } from 'src/app/services/query.service';
@@ -31,10 +31,18 @@ export class ArtistAlbumTracksComponent implements OnInit {
 						}
 
 						this.trackid = response.items[0].id.videoId;						;
+						this.showTrackPlayer();
 					}
 				);
 			}
 		);
+	}
+
+	showTrackPlayer(): void {
+		if (!this.trackid)
+			this.helper.popup("No track id provided.");
+			
+		this.router.navigate([this.trackid, 'play'], { relativeTo: this.route });
 	}
 
 	getTracks(albumid: string): void {
@@ -69,7 +77,8 @@ export class ArtistAlbumTracksComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private query: QueryService,
-		private helper: HelperService
+		private helper: HelperService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {		

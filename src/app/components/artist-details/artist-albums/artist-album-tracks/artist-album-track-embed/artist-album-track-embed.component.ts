@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { UrlSanitizerPipe } from 'src/app/url-sanitizer.pipe';
 
 @Component({
 	selector: 'app-artist-album-track-embed',
@@ -7,14 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./artist-album-track-embed.component.sass']
 })
 export class ArtistAlbumTrackEmbedComponent implements OnInit {
-	trackid: string = "";
+	youtubeUrl: string = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
 	constructor(
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
 	) { }
 	ngOnInit(): void {
 		this.route.params.subscribe(params => {
-			this.trackid = params["id"];
+			console.log(params["id"])
+			this.youtubeUrl = `https://www.youtube.com/embed/${params["id"]}`;
 		});
 	}
 }
