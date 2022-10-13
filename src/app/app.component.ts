@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HelperService } from './services/helper.service';
-import { QueryService } from './services/query.service';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-root',
@@ -9,10 +7,22 @@ import { QueryService } from './services/query.service';
 	styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+	localStorage: Storage = window.localStorage;
+	languages = {
+		codes: ["en", "de", "fr", "owo"],
+		names: ["English", "Deutsch <3", "Français", "Fuwwy :3"]
+	}
+
+	setLanguage(lang: string): void {
+		this.translate.use(lang)
+		this.localStorage.setItem("lang", lang);
+	}
+
 	constructor(
-		public route: ActivatedRoute,
-		public router: Router,
-		public query: QueryService,
-		public helper: HelperService
-	) { }
+		public translate: TranslateService
+	) { 
+		//translate.setDefaultLang("en");
+		translate.addLangs(this.languages.codes);
+		translate.use(this.localStorage.getItem("lang") || "en");
+	}
 }

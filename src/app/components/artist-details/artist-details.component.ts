@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/models/artist.model';
-import { ActivatedRoute, Router, Route } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-artist-details',
@@ -10,14 +10,15 @@ import { ActivatedRoute, Router, Route } from '@angular/router';
 export class ArtistDetailsComponent implements OnInit {
 	artist?: Artist;
 
+	private localStorage: Storage = window.localStorage
+
 	constructor(
-		private route: ActivatedRoute,
-		private router: Router
+		private router: Router,
 	) { }
+
 	ngOnInit(): void {
 		this.router.events.subscribe((() => {
-			if (history.state.name)
-				this.artist = history.state;
+			this.artist = JSON.parse(this.localStorage.getItem("selectedArtist") || "{}");
 		}));
 	}
 }

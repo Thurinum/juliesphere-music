@@ -15,7 +15,6 @@ export class ArtistAlbumsComponent implements OnInit {
 
 	getAlbums(artistid?: string | null): void {
 		if (!artistid) {
-			this.helper.popup($localize `No album artist ID was provided.`);
 			return;
 		}
 

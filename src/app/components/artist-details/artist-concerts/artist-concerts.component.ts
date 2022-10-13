@@ -26,7 +26,6 @@ export class ArtistConcertsComponent implements OnInit {
 				request.subscribe(
 					response => {
 						if (response.length === 0) {
-							this.helper.popup($localize `No concerts found for this artist.`);
 							return;
 						}
 

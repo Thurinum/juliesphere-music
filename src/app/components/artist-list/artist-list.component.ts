@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Artist } from 'src/app/models/artist.model';
 import { HelperService } from 'src/app/services/helper.service';
 import { QueryService } from 'src/app/services/query.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-artist-list',
@@ -11,30 +12,30 @@ import { QueryService } from 'src/app/services/query.service';
 export class ArtistListComponent implements OnInit {
 	artists: Artist[] = [];
 	datalist: string[] = [];
-	selectedArtistId: string = "";
+	selectedArtist?: Artist;
 
 	addArtist(name: string): void {
 		if (!name) {
-			this.helper.popup($localize `Please enter an artist name!`, `Got it`);
+			this.helper.popup($localize`Please enter an artist name!`, `Got it`);
 			return;
 		}
 
 		this.query.getArtist(name).then(
 			request => {
 				if (!request) {
-					this.helper.popup($localize `An error occured while fetching artists from the Spotify API.`, `DAMN IT`);
+					this.helper.popup($localize`An error occured while fetching artists from the Spotify API.`, `DAMN IT`);
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.artists.items.length === 0) {
-							this.helper.popup($localize `Artist "${name}" not found.`);
+							this.helper.popup($localize`Artist "${name}" not found.`);
 							return;
 						}
 
 						if (response.artists.items.length > 1 && !response.artists.items.some((artist: any) => artist.name.toLowerCase() === name.toLowerCase().trim())) {
-							this.helper.popup($localize `Multiple artists found. Please be more specific.`);
+							this.helper.popup($localize`Multiple artists found. Please be more specific.`);
 							this.datalist = response.artists.items.map((artist: any) => artist.name);
 							return;
 						}
@@ -42,7 +43,7 @@ export class ArtistListComponent implements OnInit {
 						const artistObj = response.artists.items[0];
 
 						if (this.artists.find(artist => artist.id === artistObj.id)) {
-							this.helper.popup($localize `Artist "${name}" already added.`);
+							this.helper.popup($localize`Artist "${name}" already added.`);
 							return;
 						}
 
@@ -64,19 +65,20 @@ export class ArtistListComponent implements OnInit {
 		this.localStorage.setItem("artists", JSON.stringify(this.artists));
 	}
 
-	selectCard(artistid: string): void {
-		this.selectedArtistId = artistid;
-		this.localStorage.setItem("selectedArtistId", artistid);
+	selectCard(artist: Artist): void {
+		this.selectedArtist = artist;
+		this.localStorage.setItem("selectedArtist", JSON.stringify(artist));
 	}
 
 	private localStorage: Storage = window.localStorage;
 
 	constructor(
 		private query: QueryService,
-		private helper: HelperService
+		private helper: HelperService,
+		private translate: TranslateService
 	) {
 		this.artists = JSON.parse(this.localStorage.getItem("artists") || "[]");
-		this.selectedArtistId = this.localStorage.getItem("selectedArtistId") || "";
+		this.selectedArtist = JSON.parse(this.localStorage.getItem("selectedArtist") || "{}");
 	}
 	ngOnInit(): void { }
 }

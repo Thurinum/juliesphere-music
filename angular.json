@@ -13,23 +13,6 @@
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "app",
-			"i18n": {
-				"sourceLocale": "en-US",
-				"locales": {
-					"fr": {
-						"translation": "src/locale/messages.fr.xlf",
-						"baseHref": "fr"
-					},
-					"de": {
-						"translation": "src/locale/messages.de.xlf",
-						"baseHref": "de"
-					},
-					"owo": {
-						"translation": "src/locale/messages.owo.xlf",
-						"baseHref": "awoo"
-					}
-				}
-			},
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
@@ -40,7 +23,6 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "sass",
-						"localize": true,
 						"assets": [
 							"src/favicon.ico",
 							"src/assets"
