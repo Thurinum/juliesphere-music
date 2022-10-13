@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { HelperService } from 'src/app/services/helper.service';
 import { QueryService } from 'src/app/services/query.service';
@@ -18,14 +19,14 @@ export class ArtistAlbumTracksComponent implements OnInit {
 		this.query.getTrackYoutubeId(`${this.artist} ${track}`).then(
 			request => {
 				if (!request) {
-					this.helper.popup($localize `Could not fetch track's youtube id from Spotify.`);
+					this.helper.popup(this.translate.instant( `Could not fetch track's youtube id from Spotify.`));
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.items.length === 0) {
-							this.helper.popup($localize `Track has no youtube ID!`);
+							this.helper.popup(this.translate.instant( `Track has no youtube ID!`));
 							return;
 						}
 
@@ -39,28 +40,28 @@ export class ArtistAlbumTracksComponent implements OnInit {
 
 	showTrackPlayer(): void {
 		if (!this.trackid)
-			this.helper.popup($localize `No track id provided.`);
+			this.helper.popup(this.translate.instant( `No track id provided.`));
 			
 		this.router.navigate([this.trackid, 'play'], { relativeTo: this.route });
 	}
 
 	getTracks(albumid: string | null): void {
 		if (!albumid) {
-			this.helper.popup($localize `No album id provided.`);
+			this.helper.popup(this.translate.instant( `No album id provided.`));
 			return;
 		}
 
 		this.query.getAlbumTracks(albumid).then(
 			request => {
 				if (!request) {
-					this.helper.popup($localize `Could not fetch album's tracks from Spotify.`);
+					this.helper.popup(this.translate.instant( `Could not fetch album's tracks from Spotify.`));
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.items.length === 0) {
-							this.helper.popup($localize `Album has no tracks.`);
+							this.helper.popup(this.translate.instant( `Album has no tracks.`));
 							return;
 						}
 						
@@ -76,7 +77,8 @@ export class ArtistAlbumTracksComponent implements OnInit {
 		private route: ActivatedRoute,
 		private query: QueryService,
 		private helper: HelperService,
-		private router: Router
+		private router: Router,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit(): void {

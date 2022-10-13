@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BandsintownService } from 'src/app/services/bandsintown.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { Concert } from 'src/app/models/concert.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-artist-concerts',
@@ -14,7 +15,7 @@ export class ArtistConcertsComponent implements OnInit {
 
 	getConcerts(artistName: string | null): void {
 		if (!artistName) {
-			this.helper.popup($localize `No artist name was provided.`, $localize `DAMN IT`);
+			this.helper.popup(this.translate.instant( `No artist name was provided.`, this.translate.instant( `DAMN IT`)));
 			return;
 		}
 
@@ -43,7 +44,8 @@ export class ArtistConcertsComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private bandsintown: BandsintownService,
-		private helper: HelperService
+		private helper: HelperService,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit(): void {

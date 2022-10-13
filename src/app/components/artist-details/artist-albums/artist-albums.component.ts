@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Album } from 'src/app/models/album.model';
 import { HelperService } from 'src/app/services/helper.service';
 import { QueryService } from 'src/app/services/query.service';
-import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-artist-albums',
@@ -21,7 +21,7 @@ export class ArtistAlbumsComponent implements OnInit {
 		this.query.getArtistAlbums(artistid).then(
 			request => {
 				if (!request) {
-					this.helper.popup($localize `An error occured while fetching the albums from Spotify's API.`, $localize `DAMN IT`);
+					this.helper.popup(this.translate.instant( `An error occured while fetching the albums from Spotify's API.`), this.translate.instant( `DAMN IT`));
 					return;
 				}
 
@@ -47,7 +47,8 @@ export class ArtistAlbumsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private query: QueryService,
-		private helper: HelperService
+		private helper: HelperService,
+		private translate: TranslateService
 	) { }
 
 	ngOnInit(): void {

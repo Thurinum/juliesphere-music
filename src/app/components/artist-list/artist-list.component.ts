@@ -16,26 +16,26 @@ export class ArtistListComponent implements OnInit {
 
 	addArtist(name: string): void {
 		if (!name) {
-			this.helper.popup($localize`Please enter an artist name!`, `Got it`);
+			this.helper.popup(this.translate.instant(`Please enter an artist name!`, `Got it`));
 			return;
 		}
 
 		this.query.getArtist(name).then(
 			request => {
 				if (!request) {
-					this.helper.popup($localize`An error occured while fetching artists from the Spotify API.`, `DAMN IT`);
+					this.helper.popup(this.translate.instant(`An error occured while fetching artists from the Spotify API.`), this.translate.instant(`DAMN IT`));
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.artists.items.length === 0) {
-							this.helper.popup($localize`Artist "${name}" not found.`);
+							this.helper.popup(this.translate.instant(`Artist "${name}" not found.`));
 							return;
 						}
 
 						if (response.artists.items.length > 1 && !response.artists.items.some((artist: any) => artist.name.toLowerCase() === name.toLowerCase().trim())) {
-							this.helper.popup($localize`Multiple artists found. Please be more specific.`);
+							this.helper.popup(this.translate.instant(`Multiple artists found. Please be more specific.`));
 							this.datalist = response.artists.items.map((artist: any) => artist.name);
 							return;
 						}
@@ -43,7 +43,7 @@ export class ArtistListComponent implements OnInit {
 						const artistObj = response.artists.items[0];
 
 						if (this.artists.find(artist => artist.id === artistObj.id)) {
-							this.helper.popup($localize`Artist "${name}" already added.`);
+							this.helper.popup(this.translate.instant(`Artist "${name}" already added.`));
 							return;
 						}
 
