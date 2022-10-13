@@ -18,14 +18,14 @@ export class ArtistAlbumTracksComponent implements OnInit {
 		this.query.getTrackYoutubeId(`${this.artist} ${track}`).then(
 			request => {
 				if (!request) {
-					this.helper.popup("Could not fetch track's youtube id from Spotify.");
+					this.helper.popup($localize `Could not fetch track's youtube id from Spotify.`);
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.items.length === 0) {
-							this.helper.popup(`Track has no youtube ID!`);
+							this.helper.popup($localize `Track has no youtube ID!`);
 							return;
 						}
 
@@ -39,28 +39,28 @@ export class ArtistAlbumTracksComponent implements OnInit {
 
 	showTrackPlayer(): void {
 		if (!this.trackid)
-			this.helper.popup("No track id provided.");
+			this.helper.popup($localize `No track id provided.`);
 			
 		this.router.navigate([this.trackid, 'play'], { relativeTo: this.route });
 	}
 
 	getTracks(albumid: string | null): void {
 		if (!albumid) {
-			this.helper.popup("No album id provided.");
+			this.helper.popup($localize `No album id provided.`);
 			return;
 		}
 
 		this.query.getAlbumTracks(albumid).then(
 			request => {
 				if (!request) {
-					this.helper.popup("Could not fetch album's tracks from Spotify.");
+					this.helper.popup($localize `Could not fetch album's tracks from Spotify.`);
 					return;
 				}
 
 				request.subscribe(
 					response => {
 						if (!response || response.items.length === 0) {
-							this.helper.popup(`Album has no tracks.`);
+							this.helper.popup($localize `Album has no tracks.`);
 							return;
 						}
 						

@@ -1,13 +1,14 @@
 <header>
-	<h1>JulieSphere&trade; Essentials Art Analytics 2022</h1>
+	<h1 i18n>JulieSphere&trade; Essentials Art Analytics 2022</h1>
 	<div class="language-selector">
 		<mat-icon>language</mat-icon>
 		<mat-form-field>
-			<mat-label>Language</mat-label>
+			<mat-label i18n>Language</mat-label>
 			<mat-select>
-				<mat-option>English</mat-option>
-				<mat-option>French</mat-option>
-				<mat-option>Fuwwy</mat-option>
+				<mat-option i18n>English</mat-option>
+				<mat-option i18n>French</mat-option>
+				<mat-option>Deutsch &lt;3</mat-option>
+				<mat-option>Fuwwy :3</mat-option>
 			</mat-select>
 		</mat-form-field>
 	</div>
@@ -16,15 +17,15 @@
 <br />
 
 <fieldset>
-	<legend>Add an artist</legend>
+	<legend i18n>Add an artist</legend>
 	<mat-form-field>
-		<input #query matInput type="text" placeholder="Search for artist..." list="queryAutocomplete" autocomplete="true" />
+		<input #query matInput type="text" i18n-placeholder="Search for artist..." list="queryAutocomplete" autocomplete="true" />
 		<datalist id="queryAutocomplete">
 			<option *ngFor="let option of list.datalist" [value]="option"></option>			
 		</datalist>
 	</mat-form-field>
 	&nbsp;&nbsp;
-	<button (click)="list.addArtist(query.value);query.value = ''" mat-raised-button color="primary">+ Add</button>
+	<button i18n (click)="list.addArtist(query.value);query.value = ''" mat-raised-button color="primary">+ Add</button>
 </fieldset>
 
 <br />
@@ -36,4 +37,4 @@
 <br />
 <mat-divider></mat-divider>
 
-<p class="legal"><small>&copy;2022 JuliePro. All rights reserved.</small></p>
+<p class="legal"><small i18n>&copy;2022 JuliePro. All rights reserved.</small></p>

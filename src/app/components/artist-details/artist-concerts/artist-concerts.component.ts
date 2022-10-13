@@ -14,7 +14,7 @@ export class ArtistConcertsComponent implements OnInit {
 
 	getConcerts(artistName: string | null): void {
 		if (!artistName) {
-			this.helper.popup("No artist name was provided.", "DAMN IT");
+			this.helper.popup($localize `No artist name was provided.`, $localize `DAMN IT`);
 			return;
 		}
 
@@ -26,7 +26,7 @@ export class ArtistConcertsComponent implements OnInit {
 				request.subscribe(
 					response => {
 						if (response.length === 0) {
-							this.helper.popup("No concerts found for this artist.");
+							this.helper.popup($localize `No concerts found for this artist.`);
 							return;
 						}
 

@@ -1,12 +1,12 @@
-<h2>Selected artist<span *ngIf="artist">:</span><em> {{artist?.name}}</em></h2>
+<h2 i18n>Selected artist<span *ngIf="artist">:</span><em> {{artist?.name}}</em></h2>
 
 <div *ngIf="artist; else noArtistMsg">
 	<div class="layout" mat-tab-nav-bar>
-		<a mat-tab-link [routerLink]="['/artist', artist.id, 'albums']">Albums</a>
-		<a mat-tab-link [routerLink]="['/artist', artist.name, 'concerts']">Concerts</a>
+		<a i18n mat-tab-link [routerLink]="['/artist', artist.id, 'albums']">Albums</a>
+		<a i18n mat-tab-link [routerLink]="['/artist', artist.name, 'concerts']">Concerts</a>
 	</div>
 </div>
 
 <ng-template #noArtistMsg>
-	<p>There is no artist selected. Select an artist above to see its stats.</p>
+	<p i18n>There is no artist selected. Select an artist above to see its stats.</p>
 </ng-template>

@@ -1,4 +1,4 @@
-<h2>Added artists</h2>
+<h2 i18n>Added artists</h2>
 
 <section *ngIf="artists.length > 0; else emptyList" class="card-layout">
 	<app-card #card *ngFor="let artist of artists" [model]="artist" (click)="selectCard(artist.id)"
@@ -7,6 +7,6 @@
 </section>
 
 <ng-template #emptyList>
-	<p>There are no artists added. Add artists to see them here.</p>
+	<p i18n>There are no artists added. Add artists to see them here.</p>
 	<br />
 </ng-template>

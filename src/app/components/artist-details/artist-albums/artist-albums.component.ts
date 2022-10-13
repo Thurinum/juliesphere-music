@@ -15,14 +15,14 @@ export class ArtistAlbumsComponent implements OnInit {
 
 	getAlbums(artistid?: string | null): void {
 		if (!artistid) {
-			this.helper.popup("No album artist ID was provided.");
+			this.helper.popup($localize `No album artist ID was provided.`);
 			return;
 		}
 
 		this.query.getArtistAlbums(artistid).then(
 			request => {
 				if (!request) {
-					this.helper.popup("An error occured while fetching the albums from Spotify's API.", "DAMN IT");
+					this.helper.popup($localize `An error occured while fetching the albums from Spotify's API.`, $localize `DAMN IT`);
 					return;
 				}
 
